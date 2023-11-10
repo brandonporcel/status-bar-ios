@@ -1,0 +1,20 @@
+<div class="ion-page" id="main-content">
+  <app-menu></app-menu>
+  <app-header></app-header>
+  <ion-content class="content" [fullscreen]="true">
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+</div>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button
+      *ngFor="let route of routes"
+      (click)="selectRoute(route.route)"
+      tab="{{route.route}}"
+    >
+      <ion-icon name="{{route.image}}"></ion-icon>
+      <ion-text class="routeName"> {{route.name}} </ion-text>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

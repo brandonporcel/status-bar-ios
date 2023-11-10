@@ -1,0 +1,61 @@
+<ion-content class="ion-padding">
+  <div class="onboarding-container">
+    <h1>The last step</h1>
+    <h2>We need some docs to validate you</h2>
+    <div class="message-ctn">
+      <p class="type-message">Choose an image or PDF</p>
+      <small>Please make sure the document(s) is clear and readable</small>
+    </div>
+    <ng-container *ngFor="let requirement of requirements">
+      <div
+        class="select-ctn"
+        *ngIf="!requirement.requiresBothSides;else elseBlock"
+      >
+        <ion-button
+          fill="outline"
+          class="select-input"
+          (click)="pickFile(requirement.id,'front')"
+        >
+          {{ requirement.description }}
+        </ion-button>
+        <ion-text class="fileName"
+          >{{ getFileLabel(requirement.id,'front') }}</ion-text
+        >
+      </div>
+      <ng-template #elseBlock>
+        <div class="select-ctn">
+          <ion-button
+            fill="outline"
+            class="select-input"
+            (click)="pickFile(requirement.id,'front')"
+          >
+            {{ requirement.description }} (front)
+          </ion-button>
+          <ion-text class="fileName"
+            >{{ getFileLabel(requirement.id,'front') }}</ion-text
+          >
+        </div>
+        <div class="select-ctn">
+          <ion-button
+            fill="outline"
+            class="select-input"
+            (click)="pickFile(requirement.id,'back')"
+          >
+            {{ requirement.description }} (back)
+          </ion-button>
+          <ion-text class="fileName"
+            >{{ getFileLabel(requirement.id,'back') }}</ion-text
+          >
+        </div>
+      </ng-template>
+    </ng-container>
+    <ion-button
+      expand="full"
+      class="submit-btn"
+      [disabled]="form.invalid"
+      [ngClass]="{ disabled: form.invalid }"
+      (click)="submitForm()"
+      >Accept</ion-button
+    >
+  </div>
+</ion-content>

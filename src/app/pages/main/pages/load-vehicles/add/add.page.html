@@ -1,0 +1,270 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{ title }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div>
+    <form [formGroup]="vehicleForm">
+      <div *ngIf="vehicleMode === 'trucks'">
+        <ion-item>
+          <ion-select
+            formControlName="truckBrand"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Brand"
+          >
+            <ion-select-option
+              *ngFor="let brand of truckBrands"
+              [value]="brand.id"
+            >
+              {{ brand.description }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            formControlName="truckModel"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Model"
+          >
+            <ion-select-option
+              *ngFor="let truckModel of truckModels"
+              [value]="truckModel.id"
+            >
+              {{ truckModel.description }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            formControlName="transmissionType"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Transmission Type"
+          >
+            <ion-select-option value="MANUAL"> MANUAL </ion-select-option>
+            <ion-select-option value="AUTOMATIC"> AUTOMATIC </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div *ngIf="vehicleMode === 'trailers'">
+        <ion-item>
+          <ion-select
+            formControlName="trailerBrand"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Brand"
+          >
+            <ion-select-option
+              *ngFor="let brand of trailerBrands"
+              [value]="brand.id"
+            >
+              {{ brand.description }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            formControlName="trailerColour"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Colour"
+          >
+            <ion-select-option
+              *ngFor="let colour of trailerColours"
+              [value]="colour.id"
+            >
+              {{ colour.description }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select
+            formControlName="trailerType"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Type"
+          >
+            <ion-select-option
+              *ngFor="let type of trailerTypes"
+              [value]="type.id"
+            >
+              {{ type.description }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-label>VIN:</ion-label>
+        <ion-input type="text" formControlName="vin"></ion-input>
+        <div *ngIf="(vin.dirty || vin.touched) && vin?.errors" class="errors">
+          <span *ngIf="vin.errors?.required">Type a valid value</span>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>Plate:</ion-label>
+        <ion-input type="text" formControlName="plate"></ion-input>
+        <div
+          *ngIf="(plate.dirty || plate.touched) && plate?.errors"
+          class="errors"
+        >
+          <span *ngIf="plate.errors?.required">Type a valid value</span>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="text"
+          labelPlacement="floating"
+          formControlName="lightsHoseConnector"
+          label="Lights Hose Connector"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="text"
+          labelPlacement="floating"
+          formControlName="airHoseConnector"
+          label="Air Hose Connector"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="vehicleMode === 'trailers'"
+        class="dimensions-container padding-10"
+      >
+        <h3>Dimensions data</h3>
+        <div class="section">
+          <ion-item>
+            <ion-input
+              type="number"
+              formControlName="width"
+              labelPlacement="floating"
+              label="Width"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              type="number"
+              formControlName="height"
+              labelPlacement="floating"
+              label="Height"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              type="number"
+              labelPlacement="floating"
+              label="Length"
+              formControlName="length"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div class="section">
+          <ion-item>
+            <ion-input
+              type="number"
+              labelPlacement="floating"
+              label="Max Supported Weight"
+              formControlName="maximumSupportedWeight"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              type="number"
+              labelPlacement="floating"
+              formControlName="tare"
+              label="Tare"
+            ></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <div
+        *ngIf="vehicleForm.value.trailerType === enumTrailerType.Drivevan"
+        class="padding-10"
+      >
+        <h3>Drivevan Information</h3>
+        <ion-item>
+          <ion-select
+            formControlName="dorType"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="DorType"
+          >
+            <ion-select-option value="ROLL"> ROLL </ion-select-option>
+            <ion-select-option value="SWINN"> SWINN </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="number"
+            labelPlacement="floating"
+            formControlName="inches"
+            label="Inches"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox formControlName="isVentiled">Is ventiled</ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div
+        *ngIf="vehicleForm.value.trailerType === enumTrailerType.Flatbeed"
+        class="padding-10"
+      >
+        <h3>Flatbeed Information</h3>
+        <ion-item>
+          <ion-select
+            formControlName="sizeTarp"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Size Tarp"
+          >
+            <ion-select-option value="S"> S </ion-select-option>
+            <ion-select-option value="M"> M </ion-select-option>
+            <ion-select-option value="L"> L </ion-select-option>
+            <ion-select-option value="XL"> XL </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="number"
+            labelPlacement="floating"
+            formControlName="strapQuantity"
+            label="Strap Quantity"
+          ></ion-input>
+        </ion-item>
+      </div>
+      <div
+        *ngIf="vehicleForm.value.trailerType === enumTrailerType.Reefed"
+        class="padding-10"
+      >
+        <h3>Reefed Information</h3>
+        <ion-item>
+          <ion-select
+            formControlName="freeze"
+            okText="Ok"
+            cancelText="Cancel"
+            placeholder="Freeze type"
+          >
+            <ion-select-option value="FROZEN"> Frozen </ion-select-option>
+            <ion-select-option value="REFRIGERATED">
+              Refrigerated
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <ion-button type="submit" class="submit" (click)="actionButton()">
+        Submit
+      </ion-button>
+      <div class="space-bottom"></div>
+    </form>
+  </div>
+</ion-content>

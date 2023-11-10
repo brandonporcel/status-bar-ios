@@ -1,0 +1,37 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <div class="trip-list">
+    <div *ngIf="loads&&loads.length>0;else elseBlock">
+      <ion-card *ngFor="let load of loads" (click)="redirectTo(load.id)">
+        <ion-card-header> {{ load.description }} </ion-card-header>
+        <ion-card-content>
+          <p><strong>Height:</strong> {{ load.height }}</p>
+          <p><strong>Weight Unity:</strong> {{ load.weightUnity }}</p>
+          <p><strong>Width:</strong> {{ load.width }}</p>
+          <p>
+            <strong>Pickup State:</strong> {{ load.pickUpState.description }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ng-template #elseBlock>
+      <div class="no-content">
+        <ion-text>There are no loads yet</ion-text>
+      </div>
+    </ng-template>
+    <ion-button
+      [disabled]="!loads||loads.length === 0 || paginationData.currentPage === 1"
+      fill="clear"
+      (click)="goBack()"
+    >
+      Back
+    </ion-button>
+    <ion-button
+      [disabled]="!loads||loads.length === 0 ||paginationData.currentPage === paginationData.lastPage"
+      fill="clear"
+      (click)="goNext()"
+    >
+      Next
+    </ion-button>
+  </div>
+</ion-content>

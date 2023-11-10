@@ -1,0 +1,32 @@
+<ion-content class="ion-padding ion-text-center">
+  <h1 class="ion-margin-top ion-text-uppercase">Account type</h1>
+  <h2>Select your role for Kargho</h2>
+
+  <ion-list class="ion-margin-top">
+    <ion-radio-group [(ngModel)]="selectedOption">
+      <ion-item
+        *ngFor="let option of options"
+        [button]="true"
+        (click)="selectOption(option.IdRole)"
+      >
+        <ion-label [attr.aria-label]="option.Description"
+          >{{ option.Description }}</ion-label
+        >
+        <ion-radio
+          aria-label="option.Description"
+          slot="start"
+          [value]="option.IdRole"
+        ></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-button
+    (click)="submitForm()"
+    expand="full"
+    class="ion-margin-top submit-btn"
+    [disabled]="form.invalid"
+    [ngClass]="{ disabled: form.invalid }"
+    >Next</ion-button
+  >
+</ion-content>

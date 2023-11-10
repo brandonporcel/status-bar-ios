@@ -1,0 +1,128 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <form *ngIf="form " [formGroup]="form" (ngSubmit)="sendInvitation()">
+    <div class="input-group">
+      <ion-item class="emailInput">
+        <ion-input
+          class="input-login"
+          type="email"
+          [label]="isCarrier ?'Driver Email':'Carrier Email'"
+          labelPlacement="floating"
+          formControlName="entityEmail"
+        ></ion-input>
+      </ion-item>
+
+      <div
+        *ngIf="(entityEmail?.dirty || entityEmail?.touched) && entityEmail?.errors"
+        class="errors"
+      >
+        <span *ngIf="entityEmail?.errors?.['required']">Email required.</span>
+        <span *ngIf="entityEmail?.errors?.['entityEmail']">Invalid Email</span>
+      </div>
+
+      <ion-button
+        expand="full"
+        type="submit"
+        [disabled]="form.invalid"
+        class="submit-button"
+      >
+        Invite
+      </ion-button>
+    </div>
+  </form>
+  <div class="pending-secion">
+    <h4>Pending Invitations</h4>
+    <div>
+      <ul
+        class="invitations-list"
+        *ngIf="invitations&&invitations.length>0;else elseBlock"
+      >
+        <li *ngFor="let invitation of invitations">
+          <div>
+            <ion-icon name="person" class="icon"></ion-icon>
+            <ion-text>
+              <ng-container *ngIf="isCarrier">
+                <ng-container *ngIf="invitation.temporaryUser;else elseBlock"
+                  >{{ invitation.temporaryUser.email }}</ng-container
+                >
+                <ng-template #elseBlock>
+                  <ng-container *ngIf="invitation.userPostTUser;else elseBlock"
+                    >{{ invitation.userPostTUser.email }}</ng-container
+                  >
+                </ng-template>
+                <ng-container *ngIf="invitation.driver"
+                  >{{ invitation.driver.email }}</ng-container
+                >
+                <ng-container
+                  *ngIf="invitation.type === invitationTypes.FromDriver && invitation.driverForCarrier && !invitation.userPostTUser"
+                  >{{ invitation.driverForCarrier.user.email }}</ng-container
+                >
+              </ng-container>
+              <ng-container *ngIf="!isCarrier">
+                <ng-container
+                  *ngIf="invitation.type === invitationTypes.FromDriver && invitation.carrierFromDriver"
+                  >{{ invitation.carrierFromDriver.user.email }}</ng-container
+                >
+                <ng-container
+                  *ngIf="invitation.type === invitationTypes.FromDriver && invitation.temporaryUser"
+                  >{{ invitation.temporaryUser.email }}</ng-container
+                >
+                <ng-container
+                  *ngIf="invitation.type === invitationTypes.FromDriver && invitation.userPostTUser"
+                  >{{ invitation.userPostTUser.email }}</ng-container
+                >
+                <ng-container
+                  *ngIf="invitation.type === invitationTypes.FromCarrier && invitation.carrier"
+                  >{{ invitation.carrier.user.email }}</ng-container
+                >
+              </ng-container>
+
+              Status: {{ invitation.accept ? 'Accepted' : 'Pending' }}
+            </ion-text>
+          </div>
+
+          <ng-container
+            *ngIf="!isCarrier && invitation.type === invitationTypes.FromCarrier"
+          >
+            <ion-button
+              fill="clear"
+              (click)="acceptInvitation(invitation.token)"
+            >
+              Accept Invitation
+            </ion-button>
+          </ng-container>
+          <ng-container
+            *ngIf="isCarrier && invitation.type === invitationTypes.FromDriver"
+          >
+            <ion-button
+              fill="clear"
+              (click)="acceptInvitation(invitation.token)"
+            >
+              Accept Invitation
+            </ion-button>
+          </ng-container>
+        </li>
+      </ul>
+      <ng-template #elseBlock>
+        <div>
+          <ion-text>There are no pending invitations</ion-text>
+        </div>
+      </ng-template>
+      <ion-button
+        [disabled]="invitations&& invitations.length===0||paginationData.currentPage === 1"
+        fill="clear"
+        (click)="goBack()"
+      >
+        Back
+      </ion-button>
+      <ion-button
+        [disabled]="invitations&& invitations.length===0||paginationData.currentPage === paginationData.lastPage"
+        fill="clear"
+        (click)="goNext()"
+      >
+        Next
+      </ion-button>
+    </div>
+  </div>
+  <div class="space"></div>
+</ion-content>

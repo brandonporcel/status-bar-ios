@@ -1,0 +1,19 @@
+<ion-button
+  [disabled]="
+    associatedEntities.length === 0 || paginationData.currentPage === 1
+  "
+  fill="clear"
+  (click)="goBack()"
+>
+  Back
+</ion-button>
+<ion-button
+  [disabled]="
+    associatedEntities.length === 0 ||
+    paginationData.currentPage === paginationData.lastPage
+  "
+  fill="clear"
+  (click)="goNext()"
+>
+  Next
+</ion-button>

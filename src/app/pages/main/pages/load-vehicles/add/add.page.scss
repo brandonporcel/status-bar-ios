@@ -1,0 +1,35 @@
+.space-bottom {
+  margin-bottom: 57px;
+}
+
+.close-icon-container {
+  text-align: right;
+  margin-top: 10px;
+  .close-icon {
+    font-size: 2em;
+  }
+}
+
+.dimensions-container {
+  border-bottom: 1px solid #000;
+  .section {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.padding-10 {
+  padding: 10px;
+}
+.submit {
+  background: var(#f00);
+  color: #fff;
+  display: block;
+  font-size: 1.2em;
+  height: 58px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 8px;
+  text-align: center;
+  width: 90%;
+}

@@ -1,0 +1,18 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <ion-title size="large">Detalles del Viaje</ion-title>
+  <div *ngIf="tripDetails">
+    <ion-card>
+      <ion-card-content>
+        <ion-img [src]="tripDetails.imageURL" alt="Imagen del viaje"></ion-img>
+        <p><strong>ID:</strong> {{ tripDetails.id }}</p>
+        <p><strong>Destino:</strong> {{ tripDetails.destination }}</p>
+        <p><strong>Longitud:</strong> {{ tripDetails.distance }}</p>
+        <p><strong>Camión:</strong> {{ tripDetails.truck }}</p>
+        <p><strong>Provincia:</strong> {{ tripDetails.province }}</p>
+        <p><strong>Mercancía:</strong> {{ tripDetails.cargo }}</p>
+      </ion-card-content>
+      <ion-button expand="full" fill="outline">Accept</ion-button>
+    </ion-card>
+  </div>
+</ion-content>

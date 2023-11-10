@@ -1,0 +1,41 @@
+<ion-header class="ion-padding">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" (click)="openMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="title" *ngIf="permisos.showTitle">Kargho Us</div>
+    <ion-buttons slot="end">
+      <ion-button
+        *ngIf="permisos.showNotifications"
+        (click)="selectRoute('notifications')"
+        expand="block"
+      >
+        <ion-icon class="header-icon" name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button expand="block" (click)="presentPopover($event)">
+        <ion-icon class="header-icon" name="person-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+        <ng-template>
+          <ion-list>
+            <ion-item
+              *ngFor="let route of routes"
+              [button]="true"
+              (click)="selectRoute(route.route)"
+              [button]="true"
+            >
+              <ion-icon name="person"></ion-icon>
+              <ion-label class="routeName">{{ route.name }}</ion-label>
+            </ion-item>
+            <ion-item [button]="true" (click)="logout()">
+              <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label class="routeName">Cerrar Sesión</ion-label>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

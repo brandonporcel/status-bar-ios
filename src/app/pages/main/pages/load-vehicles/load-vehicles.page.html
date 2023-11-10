@@ -1,0 +1,104 @@
+<div class="space"></div>
+<ion-content>
+  <div class="nav-header">
+    <div
+      class="nav-item"
+      *ngFor="let headerTab of headerTabs"
+      (click)="toggleHeaderTab(headerTab.id)"
+      [ngClass]="{'selected': headerTab.id === activeHeaderTabId}"
+    >
+      {{ headerTab.description }}
+    </div>
+  </div>
+
+  <ion-button fill="clear" (click)="newVehicleModal()"
+    >New <ion-icon name="add-outline"></ion-icon
+  ></ion-button>
+
+  <div *ngIf="activeHeaderTabId === 'trailers' ">
+    <ion-card *ngFor="let trailer of trailers">
+      <ion-card-content>
+        <div><strong>Plate:</strong> {{ trailer.plate }}</div>
+        <div><strong>VIN:</strong> {{ trailer.VIN }}</div>
+        <div>
+          <strong>Lights Hose Connector:</strong> {{ trailer.lightsHoseConnector
+          }}
+        </div>
+        <div>
+          <strong>Air Hose connector:</strong> {{ trailer.airHoseConnector }}
+        </div>
+        <div>
+          <strong>Brand:</strong> {{ trailer.trailerBrand.description }}
+        </div>
+        <div>
+          <strong>Colour:</strong> {{ trailer.trailerColour.description }}
+        </div>
+        <div><strong>Type:</strong> {{ trailer.trailerType.description }}</div>
+        <div>
+          <h2>Dimensions</h2>
+          <div class="section-item">
+            <div><strong>Width:</strong> {{ trailer.dimensionData.width }}</div>
+            <div>
+              <strong>Height:</strong> {{ trailer.dimensionData.height }}
+            </div>
+            <div>
+              <strong>Length:</strong> {{ trailer.dimensionData.length }}
+            </div>
+          </div>
+          <div class="section-item">
+            <div>
+              <strong>Max. Supported Weight:</strong> {{
+              trailer.dimensionData.maximumSupportedWeight }}
+            </div>
+            <div><strong>Tare:</strong> {{ trailer.dimensionData.tare }}</div>
+          </div>
+          <div class="section-item"></div>
+        </div>
+        <div class="actions-container">
+          <ion-icon
+            name="trash"
+            class="trash-icon"
+            (click)="deleteVehicle(trailer)"
+          ></ion-icon>
+          <ion-icon
+            name="create"
+            class="edit-icon"
+            (click)="editVehicle(trailer)"
+          ></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="activeHeaderTabId === 'trucks' ">
+    <ion-card *ngFor="let truck of trucks">
+      <ion-card-content>
+        <div><strong>Plate:</strong> {{ truck.plate }}</div>
+        <div><strong>VIN:</strong> {{ truck.VIN }}</div>
+        <div *ngIf="truck.transmissionType">
+          <strong>Transmission Type:</strong> {{ truck.transmissionType }}
+        </div>
+        <div>
+          <strong>Lights Hose Connector:</strong> {{ truck.lightsHoseConnector
+          }}
+        </div>
+        <div>
+          <strong>Air Hose Connector:</strong> {{ truck.airHoseConnector }}
+        </div>
+        <div><strong>Model:</strong> {{ truck.truckModel.description }}</div>
+        <div class="actions-container">
+          <ion-icon
+            name="trash"
+            class="trash-icon"
+            (click)="deleteVehicle(truck)"
+          ></ion-icon>
+          <ion-icon
+            name="create"
+            class="edit-icon"
+            (click)="editVehicle(truck)"
+          ></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

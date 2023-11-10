@@ -1,0 +1,55 @@
+<form (ngSubmit)="register()" [formGroup]="credentials">
+  <div class="input-group">
+    <ion-item class="emailInput">
+      <ion-input
+        class="input-login"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      ></ion-input>
+    </ion-item>
+    <div
+      *ngIf="(email?.dirty || email?.touched) && email?.errors"
+      class="errors"
+    >
+      <span *ngIf="email?.errors?.['required']">Enter your email.</span>
+      <span *ngIf="email?.errors?.['email']">Invalid email.</span>
+    </div>
+    <ion-item>
+      <ion-input
+        class="input-login"
+        type="{{ dynamicFieldPasswordType }}"
+        placeholder="Password"
+        formControlName="password"
+      ></ion-input>
+      <ion-icon
+        name="{{ dynamicFieldPasswordType === 'text' ? 'eye-off' : 'eye' }}"
+        class="icon"
+        (click)="showPassword()"
+      ></ion-icon>
+    </ion-item>
+    <div
+      *ngIf="(password?.dirty || password?.touched) && password?.errors"
+      class="errors"
+    >
+      <span *ngIf="password?.errors?.['required']">Enter your password.</span>
+    </div>
+    <div class="success-message" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+    <button
+      type="submit"
+      class="btn submit-btn"
+      [disabled]="credentials.invalid"
+      [ngClass]="{ disabled: credentials.invalid }"
+    >
+      Register
+    </button>
+  </div>
+  <ion-text class="acc-msg"
+    >Already have an account?
+    <span (click)="comebackToAuthPage(authRoutes.index)"
+      >Sign in</span
+    ></ion-text
+  >
+</form>

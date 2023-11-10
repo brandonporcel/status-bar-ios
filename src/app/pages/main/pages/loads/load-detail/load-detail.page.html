@@ -1,0 +1,88 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <ion-title size="large">Detalles del Viaje</ion-title>
+  <div *ngIf="tripDetails">
+    <ion-card>
+      <ion-card-content>
+        <ion-img
+          src="https://www.planetacamion.com.ar/wp-content/uploads/2018/11/Iveco-Stralis-530S36T-6x2-696x354.jpg"
+          alt="Imagen del viaje"
+        ></ion-img>
+        <p><strong>ID:</strong> {{ tripDetails.id }}</p>
+        <p>
+          <strong>Pickup Hour From:</strong> {{ tripDetails.pickupHourFrom }}
+        </p>
+        <p><strong>Pickup Hour To:</strong> {{ tripDetails.pickupHourTo }}</p>
+        <p>
+          <strong>Deliver Address:</strong> {{ tripDetails.deliverAddress }}
+        </p>
+        <br />
+        <p><strong>Description:</strong> {{ tripDetails.description }}</p>
+        <p><strong>Date:</strong> {{ tripDetails.createdAt }}</p>
+        <p>
+          <strong>Pickup Hour From:</strong> {{ tripDetails.pickupHourFrom }}
+        </p>
+        <br />
+        <p>Load Dimensions</p>
+        <br />
+        <p><strong>height:</strong> {{ tripDetails.height }}</p>
+        <p><strong>weightUnity:</strong> {{ tripDetails.weightUnity }}</p>
+        <p><strong>width:</strong> {{ tripDetails.width }}</p>
+        <p><strong>long:</strong> {{ tripDetails.long }}</p>
+        <p><strong>weight:</strong> {{ tripDetails.weight }}</p>
+        <br />
+
+        <p>
+          <strong>Pick Up State:</strong> {{
+          tripDetails.pickUpState.description}}
+        </p>
+        <p><strong>Pickup Address:</strong> {{ tripDetails.pickupAddress }}</p>
+        <p>
+          <strong>Pickup HourFrom:</strong> {{ tripDetails.pickupHourFrom }}
+        </p>
+        <p><strong>Pickup HourTo:</strong> {{ tripDetails.pickupHourTo }}</p>
+        <p>
+          <strong>Deliver State:</strong> {{
+          tripDetails.deliverState.description }}
+        </p>
+        <p><strong>DeliverDate:</strong> {{ tripDetails.deliverDate }}</p>
+        <p>
+          <strong>Deliver Address:</strong> {{ tripDetails.deliverAddress }}
+        </p>
+        <p><strong>Deliver Date:</strong> {{ tripDetails.deliverDate }}</p>
+        <p>
+          <strong>Deliver Hour From:</strong> {{ tripDetails.deliverHourFrom }}
+        </p>
+        <p><strong>Deliver Hour To:</strong> {{ tripDetails.deliverHourTo }}</p>
+        <p>
+          <strong>Is factoring Permited:</strong> {{
+          tripDetails.factoringPermited }}
+        </p>
+        <p>
+          <strong>Published Value:</strong> {{ tripDetails.publishedValue }}
+        </p>
+        <p><strong>Offered Value:</strong> {{ tripDetails.offeredValue }}</p>
+        <p>
+          <strong>is Exclusive Truck:</strong> {{ tripDetails.exclusiveTruck }}
+        </p>
+        <p><strong>Pay Days:</strong> {{ tripDetails.payDays??'-' }}</p>
+        <p>
+          <strong>fast Pay Days:</strong> {{ tripDetails.fastPayDays??'-' }}
+        </p>
+        <p>
+          <strong>Fast Pay Discount:</strong> {{
+          tripDetails.fastPayDiscount??'-' }}
+        </p>
+        <p><strong>miles:</strong> {{ tripDetails.miles??'-' }}</p>
+        <p>
+          <strong>price Per Mile:</strong> {{ tripDetails.pricePerMile??'-' }}
+        </p>
+        <p>
+          <strong>price Per Kilo:</strong> {{ tripDetails.pricePerKilo??'-' }}
+        </p>
+      </ion-card-content>
+      <ion-button expand="full" fill="outline">Accept</ion-button>
+    </ion-card>
+  </div>
+  <div class="space"></div>
+</ion-content>

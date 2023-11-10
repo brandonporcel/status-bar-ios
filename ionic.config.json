@@ -1,0 +1,7 @@
+{
+  "name": "kargho-US",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

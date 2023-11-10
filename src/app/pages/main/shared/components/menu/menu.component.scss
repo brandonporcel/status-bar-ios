@@ -1,0 +1,19 @@
+ion-icon {
+    margin-right: 5px;
+    zoom: 1;
+    color: var(--predefined-green);
+}
+
+ion-toolbar {
+    --background: rgb(242, 242, 242);
+}
+
+ion-label {
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10x;
+    text-align: center;
+}
+.routeName {
+    text-transform: capitalize;
+}

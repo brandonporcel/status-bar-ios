@@ -1,0 +1,26 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <ion-card class="profile-card">
+    <ion-card-header>
+      <ion-card-title>{{user.email}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="profile-content">
+      <div class="user-info">
+        <ion-label class="user-name" *ngFor="let role of user.roles">
+          {{role.Description}}
+        </ion-label>
+        <br />
+        <ion-text *ngIf="4>2; else noLicense" class="license-info">
+          Documents uploaded ✅
+        </ion-text>
+        <ng-template #noLicense>
+          <ion-text class="license-info" color="danger">
+            You have to upload your documents
+          </ion-text>
+        </ng-template>
+      </div>
+      <app-change-password />
+    </ion-card-content>
+  </ion-card>
+</ion-content>

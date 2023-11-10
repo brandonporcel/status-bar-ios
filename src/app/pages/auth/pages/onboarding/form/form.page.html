@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <div class="form-container">
+    <h2 class="form-title">Let's connect</h2>
+    <p class="form-subtitle">Please, fill the next form.</p>
+
+    <form [formGroup]="personalDataForm">
+      <ion-item *ngFor="let item of personalDataForm.controls | keyvalue">
+        <div>
+          <ion-input
+            [label]="getLabel(item.key)"
+            labelPlacement="floating"
+            [type]="item.key"
+            [formControlName]="item.key"
+            class="input"
+          ></ion-input>
+        </div>
+      </ion-item>
+    </form>
+
+    <div class="centered-button">
+      <ion-button
+        expand="full"
+        [disabled]="personalDataForm.invalid"
+        (click)="onSubmit()"
+        >Send</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

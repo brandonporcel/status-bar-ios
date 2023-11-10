@@ -1,0 +1,12 @@
+<div *ngIf="biometricIsAvailable && existCredentialsInStorage">
+  <ion-buttons (click)="loginHuellaFaceID()">
+    <ion-button class="sign-in-option-button background-primary">
+      <ion-icon
+        slot="start"
+        class="sign-in-option-icon"
+        name="finger-print"
+      ></ion-icon>
+      Sign In with Biometric Auth
+    </ion-button>
+  </ion-buttons>
+</div>

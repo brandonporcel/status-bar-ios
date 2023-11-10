@@ -1,0 +1,14 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <div class="trip-list">
+    <ion-card *ngFor="let trip of trips">
+      <ion-card-header> {{ trip.destination }} </ion-card-header>
+      <ion-card-content>
+        <p><strong>Longitud:</strong> {{ trip.distance }}</p>
+        <p><strong>Camión:</strong> {{ trip.truck }}</p>
+        <p><strong>Provincia:</strong> {{ trip.province }}</p>
+        <p><strong>Mercancía:</strong> {{ trip.cargo }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

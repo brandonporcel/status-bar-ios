@@ -1,0 +1,38 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <h4
+    *ngIf="notifications && notifications.length > 0"
+    (click)="markAllAsReaded()"
+  >
+    Mark all as readed
+  </h4>
+  <ion-list *ngIf="notifications && notifications.length > 0;else elseBlock">
+    <ion-item
+      *ngFor="let notification of notifications"
+      (click)="notificationRedirect(notification)"
+    >
+      <ion-label>
+        <h2>{{ notification.title }}</h2>
+        <p>{{ notification.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+      </ion-label>
+      <ion-badge color="danger" *ngIf="!notification.readed"
+        >No leído</ion-badge
+      >
+    </ion-item>
+  </ion-list>
+  <ng-template #elseBlock>
+    <ion-text class="no-notifications">
+      You don't have notifications.
+    </ion-text>
+  </ng-template>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más notificaciones"
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

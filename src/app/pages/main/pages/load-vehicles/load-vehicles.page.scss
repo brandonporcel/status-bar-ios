@@ -1,0 +1,57 @@
+.space {
+  margin-top: 56px;
+}
+.space-bottom {
+  margin-bottom: 57px;
+}
+.nav-header {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item {
+  height: 30px;
+  flex: 1;
+  text-align: center;
+  padding: 3px;
+}
+
+.selected {
+  border-bottom: 1px solid #00f;
+}
+
+.submit {
+  background: var(#f00);
+  color: #fff;
+  display: block;
+  font-size: 1.2em;
+  height: 58px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 8px;
+  text-align: center;
+  width: 90%;
+}
+
+.actions-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.trash-icon {
+  font-size: 22px;
+  color: #f00;
+}
+
+.edit-icon {
+  font-size: 22px;
+  color: #00f;
+}
+
+.section-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

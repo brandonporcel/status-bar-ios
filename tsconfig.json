@@ -1,0 +1,41 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    // "forceConsistentCasingInFileNames": true,
+    // "strict": true,
+    // "noImplicitOverride": true,
+    // "noPropertyAccessFromIndexSignature": true,
+    // "noImplicitReturns": true,
+    // "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "es2020",
+    "lib": [
+      "es2018", 
+      "dom"
+    ],
+    "useDefineForClassFields": false,
+    "paths": {
+      "@constants": ["src/constants/constants.ts"],
+      "@environment": ["src/environments/environment.ts"],
+      "@app-shared/*": ["src/app/shared/*"],
+      "@main-pages/*": ["src/app/pages/main/pages/*"],
+      "@main-shared/*": ["src/app/pages/main/shared/*"],
+      "@enums/*": ["src/enums/*"]
+    },
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

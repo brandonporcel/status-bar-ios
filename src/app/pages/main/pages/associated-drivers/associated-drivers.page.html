@@ -1,0 +1,37 @@
+<div class="space"></div>
+<ion-content [fullscreen]="true" class="content">
+  <div class="container">
+    <div *ngIf="isCarrier;else elseBlock">
+      <div *ngIf="associatedDrivers.length>0;else elseBlock">
+        <div *ngFor="let driver of associatedDrivers" class="driver-card">
+          <app-driver-card [driver]="driver"></app-driver-card>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="no-content">
+          <ion-text>There are no associated drivers yet</ion-text>
+        </div>
+      </ng-template>
+    </div>
+    <ng-template #elseBlock>
+      <div *ngIf="associatedCarriers.length>0;else elseBlock">
+        <div *ngFor="let carrier of associatedCarriers" class="driver-card">
+          <app-carrier-card [carrier]="carrier"></app-carrier-card>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="no-content">
+          <ion-text>There are no associated carriers yet</ion-text>
+        </div>
+      </ng-template>
+    </ng-template>
+    <app-navigation-buttons
+      [isCarrier]="isCarrier"
+      [paginationData]="paginationData"
+      [associatedEntities]="isCarrier ? associatedDrivers : associatedCarriers"
+      (goBackClicked)="goBack()"
+      (goNextClicked)="goNext()"
+    ></app-navigation-buttons>
+  </div>
+  <div class="space"></div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-content color="light">
+  <div class="logo-container">
+    <img src="assets/imgs/logo-kargho.png" />
+    <h2 class="title">Welcome to Kargho9<small></small></h2>
+  </div>
+  <div>
+    <ion-buttons>
+      <ion-button
+        class="sign-in-option-button background-primary"
+        (click)="goToUrl(authRoutes.register)"
+      >
+        <ion-icon
+          slot="start"
+          class="sign-in-option-icon"
+          name="person-add-outline"
+        ></ion-icon>
+        Sign Up
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-button
+        class="sign-in-option-button background-primary"
+        (click)="goToUrl(authRoutes.login)"
+      >
+        <ion-icon
+          slot="start"
+          class="sign-in-option-icon"
+          name="person-outline"
+        ></ion-icon>
+        Sign In
+      </ion-button>
+    </ion-buttons>
+  </div>
+  <app-biometric-button></app-biometric-button>
+</ion-content>
